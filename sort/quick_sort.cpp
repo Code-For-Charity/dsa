@@ -1,21 +1,18 @@
-#include <cstddef>
-#include <cstdlib>
-#include <vector>
-#include <stdlib.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-size_t partition(vector<int> &a, size_t left, size_t right)
+int partition(vector<int> &a, int left, int right)
 {
-	size_t length = right - left + 1;
-	size_t pivot_index = left + rand() % length;
+	int length = right - left + 1;
+	int pivot_index = left + rand() % length;
 	swap(a[pivot_index], a[right]);
 
 	pivot_index = right;
 	int pivot = a[pivot_index];
 
-	size_t i = left;
-	for (size_t j = left; j < right; j++) {
+	int i = left;
+	for (int j = left; j < right; j++) {
 		if (a[j] < pivot) {
 			swap(a[i], a[j]);
 			i++;
@@ -26,13 +23,13 @@ size_t partition(vector<int> &a, size_t left, size_t right)
     return i;
 }
 
-void quick_sort(vector<int> &a, size_t left, size_t right)
+void quick_sort(vector<int> &a, int left, int right)
 {
     if (left >= right) {
         return;
     }
 
-    size_t pivot_index = partition(a, left, right);
+    int pivot_index = partition(a, left, right);
     if (pivot_index > left) {
         quick_sort(a, left, pivot_index);
     }

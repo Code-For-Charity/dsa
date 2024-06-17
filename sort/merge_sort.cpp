@@ -1,6 +1,4 @@
-#include <cstddef>
-#include <vector>
-#include <iostream>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -11,14 +9,14 @@ void print_vector(vector<int> &a) {
     cout << "\n";
 }
 
-void merge(vector<int> &a, size_t left, size_t mid, size_t right)
+void merge(vector<int> &a, int left, int mid, int right)
 {
 	vector<int> left_array(a.begin() + left, a.begin() + mid + 1);
 	vector<int> right_array(a.begin() + mid + 1, a.begin() + right + 1);
 
-	size_t i = 0;
-	size_t j = 0;
-	size_t k = left;
+	int i = 0;
+	int j = 0;
+	int k = left;
 
 	while (i < left_array.size() && j < right_array.size()) {
 		int left_element = left_array[i];
@@ -46,13 +44,13 @@ void merge(vector<int> &a, size_t left, size_t mid, size_t right)
 	}
 }
 
-void merge_sort(vector<int> &a, size_t left, size_t right)
+void merge_sort(vector<int> &a, int left, int right)
 {
 	if (left >= right) {
 		return;
 	}
 
-	size_t mid = (left + right) / 2;
+	int mid = (left + right) / 2;
 	merge_sort(a, left, mid);
 	merge_sort(a, mid + 1, right);
 	merge(a, left, mid, right);
