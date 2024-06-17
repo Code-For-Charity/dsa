@@ -18,22 +18,22 @@ int partition(vector<int> &a, int left, int right)
 			i++;
 		}
 	}
-    swap(a[i], a[right]);
+	swap(a[i], a[right]);
 
-    return i;
+	return i;
 }
 
 void quick_sort(vector<int> &a, int left, int right)
 {
-    if (left >= right) {
-        return;
-    }
+	if (left >= right) {
+		return;
+	}
 
-    int pivot_index = partition(a, left, right);
-    if (pivot_index > left) {
-        quick_sort(a, left, pivot_index);
-    }
-    if (pivot_index + 1 < right) {
-        quick_sort(a, pivot_index + 1, right);
-    }
+	int pivot_index = partition(a, left, right);
+	if (pivot_index > left) {
+		quick_sort(a, left, pivot_index);
+	}
+	if (pivot_index + 1 < right) {
+		quick_sort(a, pivot_index + 1, right);
+	}
 }

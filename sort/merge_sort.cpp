@@ -2,11 +2,12 @@
 
 using namespace std;
 
-void print_vector(vector<int> &a) {
-    for(auto var : a) {
-        cout << var << " ";
-    }
-    cout << "\n";
+void print_vector(vector<int> &a)
+{
+	for (auto var : a) {
+		cout << var << " ";
+	}
+	cout << "\n";
 }
 
 void merge(vector<int> &a, int left, int mid, int right)
