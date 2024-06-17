@@ -18,13 +18,13 @@ int get_index_of_first_min(const vector<int> &a, int left, int right)
 		}
 	}
 
-    return min_index;
+	return min_index;
 }
 
 void selection_sort(vector<int> &a)
 {
 	for (int i = 0; i < a.size(); i++) {
-        int min_index = get_index_of_first_min(a, i , a.size() - 1);
-        swap(a[i], a[min_index]);
+		int min_index = get_index_of_first_min(a, i, a.size() - 1);
+		swap(a[i], a[min_index]);
 	}
 }
