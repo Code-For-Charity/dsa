@@ -1,46 +1,55 @@
-// 2x2 matrix
-// a b
-// c d
-struct Matrix {
-    int a;
-    int b;
-    int c;
-    int d;
+class Matrix {
+    public:
+	int data[2][2];
+
+	Matrix *multiply(Matrix *other)
+	{
+		Matrix *result = new Matrix();
+		result->data[0][0] = this->data[0][0] * other->data[0][0] +
+				     this->data[0][1] * other->data[1][0];
+
+		result->data[0][1] = this->data[0][0] * other->data[0][1] +
+				     this->data[0][1] * other->data[1][1];
+
+		result->data[1][0] = this->data[1][0] * other->data[0][0] +
+				     this->data[1][1] * other->data[1][0];
+
+		result->data[1][1] = this->data[1][0] * other->data[0][1] +
+				     this->data[1][1] * other->data[1][1];
+
+		return result;
+	}
+
+	Matrix *pow(int n)
+	{
+		if (n == 0) {
+			Matrix *identity = new Matrix();
+			identity->data[0][0] = 1;
+			identity->data[0][1] = 0;
+			identity->data[1][0] = 0;
+			identity->data[1][1] = 1;
+
+			return identity;
+		}
+
+		Matrix *half = this->pow(n / 2);
+		Matrix *result = half->multiply(half);
+		if (n % 2 == 1) {
+			result = result->multiply(this);
+		}
+
+		return result;
+	}
 };
-struct Matrix multiply(struct Matrix &first, struct Matrix &second) {
-    int a = first.a * second.a + first.b * second.c;
-    int b = first.a * second.b + first.b * second.d;
-    int c = first.c * second.a + first.d * second.c;
-    int d = first.c * second.b + first.d * second.d;
-    return {
-        .a = a,
-        .b = b,
-        .c = c,
-        .d = d
-    };
-}
-struct Matrix pow(struct Matrix &matrix, int n) {
-    if (n == 0) {
-        return 
-    }
 
-    struct Matrix half = pow(matrix, n / 2);
-    struct Matrix result = multiply(half, half);
-    if (n % 2 == 1) {
-        result = multiply(result, matrix);
-    }
+unsigned long long fibonacci_matrix(int n)
+{
+	Matrix *init = new Matrix();
+	init->data[0][0] = 0;
+	init->data[0][1] = 1;
+	init->data[1][0] = 1;
+	init->data[1][1] = 1;
+	Matrix *result = init->pow(n);
 
-    return result;
-}
-
-unsigned long long fibonacci_matrix(int n) {
-    struct Matrix init = {
-        .a = 1,
-        .b = 1,
-        .c = 0,
-        .d = 1,
-    };
-    struct Matrix result = pow(init, n);
-
-    return 1;
+	return result->data[0][1];
 }

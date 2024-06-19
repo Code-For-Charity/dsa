@@ -1,10 +1,11 @@
-unsigned long long recursive(int n) {
-    if( n == 0) {
-        return 0;
-    }
-    if (n == 1) {
-        return 1;
-    }
+unsigned long long fibonacci_recursive(int n)
+{
+	if (n == 0) {
+		return 0;
+	}
+	if (n == 1) {
+		return 1;
+	}
 
-    return recursive(n - 1) + recursive(n - 2);
+	return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2);
 }
